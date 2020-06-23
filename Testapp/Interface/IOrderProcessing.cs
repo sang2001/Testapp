@@ -6,7 +6,7 @@ using Testapp.Model;
 
 namespace Testapp.Interface
 {
-    interface IOrderProcessing
+   public interface IOrderProcessing<T> where T : class
     {
 
         PaymentStatus ProcessOrder<T>(T model);

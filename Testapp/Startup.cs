@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Testapp.Interface;
+using Testapp.Model;
+using Testapp.Service.OrderProcessingService;
 
 namespace Testapp
 {
@@ -25,7 +28,15 @@ namespace Testapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers();            
+                
+            services.AddScoped<IOrderProcessing<BookModel>, BookService>();
+            services.AddScoped<IOrderProcessing<MembershipModel>, MembershipService>();
+            services.AddScoped<IOrderProcessing<VideoModel>, VideoService>();
+            services.AddScoped<IOrderFactoryService<BookService>,BookService>();
+            
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
